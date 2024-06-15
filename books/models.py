@@ -19,7 +19,7 @@ class Book(models.Model):
     created_at = models.DateField(default=date.today)
     title = models.CharField(max_length=80)
     url_title = models.CharField(max_length=80, default='', blank=True, null=True)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1500)
     cover_image = models.FileField(upload_to='covers', blank=True, null=True)
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default='')
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
