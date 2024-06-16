@@ -14,6 +14,7 @@ class Book(models.Model):
         ('Historical', 'Historical'),
         ('Spy', 'Spy'),
         ('Contemporary', 'Contemporary'),
+        ('Unclassified', 'Unclassified'),
     ]
 
     created_at = models.DateField(default=date.today)

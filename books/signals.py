@@ -5,7 +5,7 @@ from django.db.models.signals import post_save, post_delete, pre_save, post_init
 
 
 @receiver(post_save, sender=Book)
-def Book_pos_save(sender, instance, created, **kwargs):
+def book_post_save(sender, instance, created, **kwargs):
     """
     A signal handler function for renaming cover with same identifier as the title
     """
@@ -32,7 +32,6 @@ def update_cover(sender, instance, **kwargs):
     """
     A signal handler function for checking pre save if cover exists and deletes old file if changed
     """
-    print("Entering pre_save signal")
     if instance.pk:
         try:
             old_instance = Book.objects.get(pk=instance.pk)
