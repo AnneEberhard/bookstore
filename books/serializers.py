@@ -9,7 +9,7 @@ class BookSerializer(serializers.ModelSerializer):
     """
     Main serializer used when Books are called for from frontend
     """
-    cover_image = serializers.SerializerMethodField()
+    cover_image = serializers.ImageField(required=False)
     author = CustomUserSerializer(read_only=True)
 
     class Meta:

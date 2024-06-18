@@ -39,8 +39,7 @@ class BookCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        instance = serializer.save(author=self.request.user)
-        book_post_save(sender=Book, instance=instance, created=True)
+        serializer.save(author=self.request.user)
 
 
 class BookUpdateView(generics.UpdateAPIView):
@@ -49,9 +48,7 @@ class BookUpdateView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_update(self, serializer):
-        instance = serializer.save()
-        store_original_cover(sender=Book, instance=instance)
-        update_cover(sender=Book, instance=instance)
+        serializer.save()
 
 
 class BookDeleteView(generics.DestroyAPIView):
