@@ -9,7 +9,6 @@ def book_post_save(sender, instance, created, **kwargs):
     """
     A signal handler function for renaming cover with same identifier as the title
     """
-    print("Post save signal triggered")
     if not hasattr(instance, '_performing_post_save'):
         instance._performing_post_save = False
 

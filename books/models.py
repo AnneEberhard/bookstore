@@ -33,10 +33,6 @@ class Book(models.Model):
         if not self.url_title:
             self.url_title = self.generate_url_title()
         super().save(*args, **kwargs)
-        if self.cover_image:
-            print("Cover image path:", self.cover_image.path)
-        else:
-            print("No cover image")
 
     def generate_url_title(self):
         return self.title.replace(' ', '_')
