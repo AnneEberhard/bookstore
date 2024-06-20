@@ -1,8 +1,6 @@
 from rest_framework import serializers
-
 from users.serializers import CustomUserSerializer
 from .models import Book
-from users.models import CustomUser
 
 
 class BookSerializer(serializers.ModelSerializer):
