@@ -1,6 +1,6 @@
 from rest_framework import generics
 
-from .permissions import IsAuthorOrReadOnly
+from .permissions import IsAuthorOrReadOnly, IsNotDarthVader
 from .models import Book
 from .serializers import BookSerializer
 from rest_framework.views import APIView
@@ -12,6 +12,7 @@ from .signals import book_post_save, update_cover, store_original_cover, delete_
 
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
+    # queryset =  Book.objects.filter(is_published=True)
     serializer_class = BookSerializer
 
     def get_queryset(self):
@@ -26,6 +27,7 @@ class BookListView(generics.ListAPIView):
         if author:
             queryset = queryset.filter(author__username__icontains=author)
         return queryset
+        
 
 
 class BookDetailView(generics.RetrieveAPIView):
@@ -36,7 +38,7 @@ class BookDetailView(generics.RetrieveAPIView):
 class BookCreateView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsNotDarthVader]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
