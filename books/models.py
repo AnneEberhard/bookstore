@@ -1,6 +1,5 @@
 from datetime import date
 from django.db import models
-
 from users.models import CustomUser
 
 
@@ -25,7 +24,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default='')
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=True)
-
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=10)
     def __str__(self):
         return self.title
 

@@ -1,13 +1,8 @@
 from rest_framework import generics
-
 from .permissions import IsAuthorOrReadOnly, IsNotDarthVader
 from .models import Book
 from .serializers import BookSerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from .signals import book_post_save, update_cover, store_original_cover, delete_cover_image
 
 
 class BookListView(generics.ListAPIView):
@@ -28,7 +23,6 @@ class BookListView(generics.ListAPIView):
             queryset = queryset.filter(author__username__icontains=author)
         return queryset
         
-
 
 class BookDetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
