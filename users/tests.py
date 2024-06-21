@@ -3,6 +3,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from users.models import CustomUser
 
+
 class AuthTokenTests(APITestCase):
 
     def setUp(self):
@@ -56,7 +57,7 @@ class RegisterTests(APITestCase):
             'author_pseudonym': 'Pseudonym'
         }
         response = self.client.post(url, data)
-         
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn('user', response.data)
         self.assertIn('message', response.data)

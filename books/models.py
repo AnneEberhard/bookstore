@@ -17,7 +17,7 @@ class Book(models.Model):
         author (ForeignKey): The author of the book, linked to a CustomUser instance.
         is_published (BooleanField): Indicates if the book is published or not.
         price (DecimalField): The price of the book.
-    
+
     Methods:
         __str__(): Returns the string representation of the book instance.
         save(): Overrides the save method to generate a URL-friendly title if not provided.
@@ -41,6 +41,7 @@ class Book(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     is_published = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=10)
+
     def __str__(self):
         """
         Returns the string representation of the book instance.

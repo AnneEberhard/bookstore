@@ -41,7 +41,7 @@ class BookListView(generics.ListAPIView):
         if author:
             queryset = queryset.filter(author__username__icontains=author)
         return queryset
-        
+
 
 class BookDetailView(generics.RetrieveAPIView):
     """

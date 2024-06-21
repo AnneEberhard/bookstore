@@ -10,4 +10,5 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('author_pseudonym',)}),
     )
 
+
 admin.site.register(CustomUser, CustomUserAdmin)

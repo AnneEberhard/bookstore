@@ -3,7 +3,8 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from users.models import CustomUser
 from .models import Book
-from .serializers import BookSerializer  
+from .serializers import BookSerializer
+
 
 class BookListViewTests(APITestCase):
 
@@ -64,7 +65,7 @@ class BookViewsTests(APITestCase):
         self.book = Book.objects.create(
             title='Test Book',
             genre='Fantasy',
-            author=self.user 
+            author=self.user
         )
 
     def test_book_detail_view(self):
@@ -79,7 +80,7 @@ class BookViewsTests(APITestCase):
         url = reverse('book-create')
         data = {
             'title': 'New Book',
-            'genre': 'Fantasy', 
+            'genre': 'Fantasy',
             'description': 'Description',
             'author': self.user,
             'is_published': True,
@@ -103,7 +104,7 @@ class BookViewsTests(APITestCase):
         }
         self.client.force_authenticate(user=self.user)
         response = self.client.put(url, data)
-        
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.book.refresh_from_db()
         self.assertEqual(self.book.title, 'Updated Book')

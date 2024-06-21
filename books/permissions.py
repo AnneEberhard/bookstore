@@ -1,6 +1,7 @@
 from rest_framework import permissions
 import re
 
+
 class IsAuthorOrReadOnly(permissions.BasePermission):
     """
     Custom permission to allow only authors of an object to edit it.
