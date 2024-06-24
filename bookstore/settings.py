@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 import sentry_sdk
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,10 +38,15 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
+    'https://localhost:4200',
     'http://localhost:8000',
     'http://127.0.0.1:4200',
 ]
 
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'baggage',
+    'sentry-trace',
+    ]
 
 # Application definition
 
